@@ -1,6 +1,6 @@
 #mario party bot
 #most points win, leaderboard thing
-#person who starts the games decides shit like when to start
+#person who starts the games decides when to start
 #games: hangman,tick-tack-toe, would you rather, and type writer game
 import discord
 import os
@@ -8,7 +8,6 @@ from discord.ext import commands
 from webserver import keep_alive
 from random import choice
 import random
-import time
 
 ###############################################################################################
 
@@ -26,7 +25,7 @@ client = commands.Bot(command_prefix = "?", intents = intents, help_command = No
 async def help(ctx):
   em = discord.Embed(title = "Help", description = "Use ?help <command> for extended information on a command.", color = color.white)
   
-  em.add_field(name = "🕹Mini-games", value = "Create, Minigames, RPC")
+  em.add_field(name = "🕹Mini-games", value = "Minigames, RPC")
   em.add_field(name = "📃Miscellaneous", value= "Test")
 
   await ctx.send(embed = em)
@@ -83,30 +82,8 @@ async def minigames(ctx):
 
 @client.command()
 async def minigames(ctx):
-  em = discord.Embed(title = "🕹Minigames", description = "Tic-Tac-Toe\nTypeRacer 2.0\nHangman\nRock Paper Scissors", color = color.white)
+  em = discord.Embed(title = "🕹Minigames", description = "Rock Paper Scissors", color = color.white)
   await ctx.send(embed = em)
-
-
-
-''' Create Command '''
-###############################################################################################
-@help.command()
-async def create(ctx):
-  em = discord.Embed(title = "Create", description = "Host a minigame room.", color = color.white)
-  em.add_field(name = "**Syntax**", value = "?create <Number of Players>")
-  await ctx.send(embed = em)
-
-@client.command()
-async def create(ctx, pcount = 4):
-  if pcount > 4:
-    await ctx.send("Too many players!")
-  elif pcount < 2:
-    await ctx.send("Too few players!")
-  else:
-    em = discord.Embed(title = f"{ctx.message.author}'s Room", description = "", color = color.white)
-    em.add_field(name = f"**Players**[{pcount}]", value = "_____ \n" * pcount + "React below to join!")
-    msg = await ctx.send(embed = em)
-    await msg.add_reaction("🎮")
 
 
 
