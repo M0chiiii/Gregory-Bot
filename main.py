@@ -1,6 +1,6 @@
 #mario party bot
 #most points win, leaderboard thing
-#person who starts the games decides shit like when to start
+#person who starts the games decides when to start
 #games: hangman,tick-tack-toe, would you rather, and type writer game
 import discord
 import os
